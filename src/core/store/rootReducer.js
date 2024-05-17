@@ -1,4 +1,4 @@
-import { CASE_REDUCERS } from "../../untils/constants";
+import { CASE_REDUCERS } from "../../untils/constants.js";
 
 // KHAI BÁO INIT STATE
 const initState = {
@@ -13,16 +13,16 @@ const initState = {
 // KHAI BÁO REDUCER
 const rootReducer = (state = initState, action) => {
   switch (action?.type) {
-    case CASE_REDUCERS?.DELETE_USER:
-      let users = state?.users;
-      users = users?.filter((item) => item?.id !== action?.payload.id);
-      return { ...state, users };
     case CASE_REDUCERS?.CREATE_USER:
       let id = Math.floor(Math.random() * 10000);
       return {
         ...state,
         users: [...state.users, { id: id, name: `random - ${id}` }],
       };
+    case CASE_REDUCERS?.DELETE_USER:
+      let users = state?.users;
+      users = users?.filter((item) => item?.id !== action?.payload.id);
+      return { ...state, users };
     default:
       return state;
   }
